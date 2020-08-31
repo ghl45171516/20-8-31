@@ -1,1 +1,1 @@
-# 20-8-31
+# git + mongodb + node.js + ajax + jq + js + css + html
