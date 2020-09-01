@@ -1,15 +1,8 @@
 const express = require('express')
 const app = express()
-const users = require('./routes/user.js')
+// 转用户一级路由
 
-// 增加
-app.use('/users', users)
-
-
-
-
-
-
+require('./routes/index.js')(app)
 
 
 app.listen(3000)

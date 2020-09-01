@@ -10,9 +10,7 @@ const getSchema = new mongoose.Schema({
   },
   nickname: {
     type: String,
-    required: true,
-    minlength: 4,
-    maxlength: 10
+    required: true
   },
   role: {
     type: String,
@@ -21,7 +19,7 @@ const getSchema = new mongoose.Schema({
     enum: ['admin', 'normal']
   },
   createtime: {
-    type: Data,
+    type: Date,
     default: Date.now
   },
   status: {

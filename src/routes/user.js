@@ -1,25 +1,17 @@
-const express = require('express')
-const User = require('../model/template.js')
+// 二级路由
+const users = require('express').Router()
 const bodyParser = require('body-parser')
-const md5 = require('MD5')
-const users = express()
-
 users.use(bodyParser.urlencoded({ extended: false }));
+console.log('----------')
 
-users.post('/', async (req, res) => {
-  let body = await req.body
-  let bool = await User.findOne({ username: body.username })
-  console.log(bool)
-  if (bool) {
-    return res.status(404).send('失败')
-  }
-  console.log(body.password)
-  body.password = md5(body.password)
-  let newUser = new User(body)
-  newUser.save()
-  console.log(body.password)
-  res.send('bbbbb')
-})
-
-
+// 增加用户
+users.post('/', require('../controller/user/save.js'))
+// 查询所有用户
+users.get('/', require('../controller/user/find.js'))
+// 查询单个用户
+users.get('/:id', require('../controller/user/findById.js'))
+// 改
+users.put('/:id', require('../controller/user/update.js'))
+// 删
+users.delete('/:id', require('../controller/user/delete.js'))
 module.exports = users
